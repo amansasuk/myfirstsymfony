@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MyfirstController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif;color:red; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .my{
+    padding: 15px;
+    color: #1EBBA3;
+    border: 1px solid #bead18;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+<script>
+$(document).ready(function(){
+    $("#light").click(function(){
+       $("#tbcolor").addClass("table-striped");
+       $("#tbcolor").removeClass("table-dark");
+       $("#tbcolor").removeClass("table-success");
+    });
+});
+$(document).ready(function(){
+    $("#Dark").click(function(){
+       $("#tbcolor").addClass("table-dark");
+       $("#tbcolor").removeClass("table-striped");
+       $("#tbcolor").removeClass("table-success");
+    });
+});
+$(document).ready(function(){
+    $("#green").click(function(){
+       $("#tbcolor").addClass("table-success");
+       $("#tbcolor").removeClass("table-striped");
+       $("#tbcolor").removeClass("table-dark");
+    });
+});
+
+</script>
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="logo.png" alt="" width="100"  class="d-inline-block align-text-top">
+      
+    </a>
+        
+  </div>
+</nav>
+
+<div class="container">
+<div class="row">
+  <div class="col-md-8 offset-md-2" style="padding:40px 0px;">
+  <a href="/create"  class="btn btn-outline-primary"><spen>+</spen> Add new</a>
+  </div>
+  <div class="row">
+  
+    <div class="col-md-8 offset-md-2">
+
+        {# {% for message in app.flashes('notice') %}
+            <div class="alert alert-success" role="alert">
+           {{ message }}
+            </div>
+        {% endfor %} #}
+
+     <table class="table table-striped" id="tbcolor">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Date Of Birth</th>
+      <th scope="col">action</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in list  %}
+    <tr>
+      <th scope="row">{{ data.id }}</th>
+      <td>{{ data.name }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.dob }}</td>
+      <td> <a href="{{path('update',{'id':data.id})}}  "  class="btn btn-outline-warning">Edite </a> </td>
+      <td> <a href="{{path('delete',{'id':data.id})}} "  class="btn btn-outline-danger">Delete </a> </td>
+
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>    
+   <div style="text-aling:center">
+   <button type="button" class="btn btn-light" id="light" style="border:1px solid">Light</button>
+<button type="button" class="btn btn-dark" id="Dark">Dark</button>
+<button type="button" class="btn btn-outline-success" id="green">Green</button>         
+   </div>         
+        </div>
+    </div>
+ </div
+{% endblock %}
